@@ -1,0 +1,108 @@
+
+
+header{
+  width:auto;
+  background-color: rgb(28, 28, 29);
+  color: white;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.Input-Form-container{
+background-color: rgb(31, 31, 31);
+border-radius: 20px;
+padding: 20px;
+width: 300px;
+color: rgb(255, 255, 255);
+margin: 20px;
+
+}
+
+.Input-Form{
+  margin: 10px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: scroll;
+ 
+}
+
+#personalAbout{
+  min-height: 100px;
+  max-height: 100px;
+  min-width: 275px;
+  max-width: 275px;
+}
+
+input{
+    margin-bottom: 15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding-left: 5px;
+}
+
+input:focus{
+  outline: none;
+  border: 2px solid rgb(53, 204, 174);
+  box-shadow: 0px 0px 5px rgb(141, 106, 106);
+}
+
+.input-header{
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.input-form{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  border-bottom: 2px solid black;
+}
+
+#educationSubmitButton{
+  margin-left: 30px
+
+}
+
+#CV{
+  display: flex;
+  flex-direction: column;
+  width: 600px
+
+}
+
+
+#CVTitle{
+  font-weight: 900;
+  font-size: 22px;
+}
+.CVSectionTitle{
+  font-weight: 800;
+  font-size: 18px;
+  padding-left: 40px;
+}
+
+.CVSection{
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+  border-radius: 15px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.longFieldInput{
+  width: inherit;
+  height: 200px;
+  overflow: scroll;
+}
+
+.EducationFieldsBtn{
+width: 100px;
+margin-left: 180px;
+}
