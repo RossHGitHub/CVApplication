@@ -2,6 +2,7 @@ import { useState } from "react";
 import React from "react";
 import './style.css';
 import { EducationInfoSection } from "./educationComponentTest";
+import { ExperienceInfoSection } from "./experienceComponent";
 
 function PersonalInfoSection({editMode, handleChange, handlePersonalSubmit, personalFormData, handleEdit}){
 
@@ -40,13 +41,13 @@ function PersonalInfoSection({editMode, handleChange, handlePersonalSubmit, pers
 
         <label htmlFor="personalAbout">Personal About:</label>
         {editMode ? (
-          <textarea name="personalAbout"  id="personalAbout" type="textarea" value={personalFormData.personalAbout} onChange={handleChange}></textarea>
+          <textarea name="personalAbout"  className="aboutSection" id="personalAbout" type="textarea" value={personalFormData.personalAbout} onChange={handleChange}></textarea>
         ) : (
           <p className="longFieldInput"> {personalFormData.personalAbout}</p>
         )}
 
         {editMode && <button type="submit">Submit</button>}
-        <button type="button" onClick={handleEdit}>Edit</button>
+        <button className="submitBtn" type="button" onClick={handleEdit}>Edit</button>
       </form>
 
     </div>
@@ -54,7 +55,7 @@ function PersonalInfoSection({editMode, handleChange, handlePersonalSubmit, pers
 }
 
 
-function CV({personalData, editMode, educationFields}){
+function CV({personalData, editMode, educationFields, experienceFields}){
   return (
     <div id="CV" className="Input-Form-container">
       <p id="CVTitle">Curriculum Vitae</p>
@@ -76,6 +77,26 @@ function CV({personalData, editMode, educationFields}){
             <p>Qualification: {field.Qualification}</p>
             <p>Grade: {field.Grade}</p>
             </div>
+            
+
+            
+        )))}
+        
+      </section>
+
+      <section className="CVSection" id="CVExperienceInfo">
+        <p className="CVSectionTitle">Experience Info</p>
+
+        {editMode ? ('') : (experienceFields.map((field, index) => (
+          <div key={index}> 
+            <p>Title: {field.Title}</p>
+            <p>Company: {field.Company}</p>
+            <p>Dates: {field.Dates}</p>
+            <p>About: {field.About}</p>
+            </div>
+            
+
+            
         )))}
         
       </section>
@@ -131,7 +152,32 @@ function App(){
   }
 
 
+const [experienceFields, setExperienceFields] = useState([{
+  Title: '',
+  Company: '',
+  Dates: '',
+  About: ''
+}]) 
 
+const handleExperienceFieldChange = (index, e) => {
+  const { name, value } = e.target;
+  const updatedFields = [...experienceFields];
+  updatedFields[index][name] = value;
+  setExperienceFields(updatedFields);
+}
+
+const addExperienceField = (e) => {
+  e.preventDefault();
+  setExperienceFields([...experienceFields, {  Title: '',
+  Company: '',
+  Dates: '',
+  About: '' }]);
+};
+
+const removeExperienceField = (e) => {
+  e.preventDefault();
+  setExperienceFields([...experienceFields.slice(-1)])
+}
 
 
   const handleEdit = (e) => {
@@ -145,7 +191,8 @@ function App(){
     <>
     <PersonalInfoSection editMode = {editMode} handleChange={handlePersonalInfoChange} handlePersonalSubmit={handlePersonalSubmit} personalFormData={personalFormData} handleEdit={handleEdit}/>
     <EducationInfoSection educationFields={educationFields} handleEducationFieldChange={handleEducationFieldChange} addEducationField={addEducationField} editMode={editMode} handleEdit={handleEdit} handleSubmit={handlePersonalSubmit} removeEducationField={removeEducationField}/>
-    <CV personalData = {personalFormData} editMode={editMode} educationFields={educationFields}/> 
+    <ExperienceInfoSection experienceFields={experienceFields} handleExperienceFieldChange={handleExperienceFieldChange} handleSubmit={handlePersonalSubmit} editMode={editMode} addExperienceField={addExperienceField} removeExperienceField={removeExperienceField} handleEdit={handleEdit}/>
+    <CV personalData = {personalFormData} editMode={editMode} educationFields={educationFields} experienceFields={experienceFields}/> 
     </>
   )
 }

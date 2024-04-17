@@ -71,7 +71,7 @@ function EducationInfoSection({ educationFields, handleEducationFieldChange, add
         {editMode && <button className="EducationFieldsBtn" onClick={removeEducationField}>Remove Last Education</button>}
         
         {/* Add buttons for edit and submit */}
-        {editMode && <button type="submit">Submit</button>}
+        {editMode && <button className='submitBtn' type="submit">Submit</button>}
         <button onClick={handleEdit}>Edit</button>
       </form>
     </section>
